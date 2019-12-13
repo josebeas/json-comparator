@@ -14,6 +14,11 @@ public class JSONInput {
         this.content = content;
     }
 
+    public JSONInput(InputType type, String content) {
+        this.type = type;
+        this.content = content;
+    }
+
     public Integer getId() {
         return id;
     }
