@@ -1,29 +1,16 @@
 package com.jbeas.jsoncomparator.form;
 
-import com.jbeas.jsoncomparator.dto.InputType;
-
-
 public class JSONInputForm {
 
-    private Integer id;
-
-    private InputType type;
+    private String type;
 
     private String content;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public InputType getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(InputType type) {
+    public void setType(String type) {
         this.type = type;
     }
 

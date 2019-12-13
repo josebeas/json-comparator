@@ -10,7 +10,7 @@ public enum InputType {
     }
 
     //This could add a easier way to bind object
-    static InputType getFromInteger(Integer type){
+    public static InputType getFromInteger(Integer type){
         if(type == null)
             type = 0;
         switch(type) {
@@ -23,14 +23,9 @@ public enum InputType {
         }
     }
 
-    static InputType getFromString(String type){
+    public static InputType getFromString(String type){
         if(type != null && type.equalsIgnoreCase("RIGHT"))
             return RIGHT;
         return LEFT;
     }
-
-    public String getType(){
-        return this.type;
-    }
-
 }

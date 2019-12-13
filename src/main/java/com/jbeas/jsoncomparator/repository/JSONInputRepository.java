@@ -16,7 +16,7 @@ public class JSONInputRepository {
     //TODO: add custom exceptions when entity not found
     public JSONInput getById(Integer id, InputType type){
         //TODO: create a empty constructor defaulting values
-        JSONInput result = new JSONInput(-1, null, null);
+        JSONInput result = new JSONInput(null, null);
         switch(type){
             case LEFT:
                 result = leftEntityManager.get(id);
