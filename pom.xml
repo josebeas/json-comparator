@@ -52,6 +52,14 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- this entire dependency could be replaced with own StringUtils -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.9</version>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>

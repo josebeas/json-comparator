@@ -26,7 +26,7 @@ public class InputJSONController {
         binder.addValidators(inputFormValidator);
     }
 
-    @RequestMapping(value = "/v1/diff/status")
+    @RequestMapping(value = "/v1/input/status")
     public String getStatus() {
         return "JSON INPUT CONTROLLER IS RUNNING!";
     }

@@ -1,18 +1,27 @@
 package com.jbeas.jsoncomparator.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DiffResult {
 
     //TODO: add custom exception in case null id
     private Integer id;
 
-    private Integer offset;
+    private List<Integer> offsets;
 
     private Integer length;
 
     public DiffResult(Integer id, Integer offset, Integer length){
         this.id = id;
-        this.offset = offset;
+        this.offsets = new ArrayList<>();
         this.length = length;
+    }
+
+    public DiffResult(Integer id){
+        this.id = id;
+        this.offsets = new ArrayList<>();
+        this.length = -1;
     }
 
     public Integer getId() {
@@ -23,18 +32,18 @@ public class DiffResult {
         this.id = id;
     }
 
-    public Integer getOffset() {
-        return offset;
+    public List<Integer> getOffsets() {
+        return offsets;
     }
 
-    public void setOffset(Integer offset) {
-        if(offset != null)
-            this.offset = offset;
+    public void setOffset(List<Integer> offsets) {
+        if(offsets != null)
+            this.offsets = offsets;
         else
-            this.offset = -1;
+            this.offsets = new ArrayList<>();
     }
 
-    public Integer getLenght() {
+    public Integer getLength() {
         return length;
     }
 
