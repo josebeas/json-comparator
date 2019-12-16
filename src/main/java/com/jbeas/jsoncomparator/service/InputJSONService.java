@@ -47,45 +47,47 @@ public class InputJSONService {
         o If of same size provide insight in where the diffs are, actual diffs are not needed.
          So mainly offsets + length in the data
         */
-        logger.info(String.format("Comparing %s with %s ", left.toString(), right.toString()));
+        logger.debug(String.format("Comparing %s with %s ", left.toString(), right.toString()));
         int pos = 0;
         int offsetPosition = -1;
         int offsetLength = 0;
         boolean offsetFound = false;
 
         List<Offset> offsets = new ArrayList<>();
-
         if(left != null && right != null){
-            if(!StringUtils.equals(left.getContent(), right.getContent()) && (left.getContent().length() == right.getContent().length())){
+            if(StringUtils.equals(left.getContent(), right.getContent())){
+                result.setResult("SAME STRINGS");
+            } else if(left.getContent().length() == right.getContent().length()){
                 while(pos < left.getContent().length()){
                     if(left.getContent().charAt(pos) != right.getContent().charAt(pos)){
                         if(!offsetFound){
-                            offsetPosition = pos;
+                            offsetPosition = pos; // change this to offsetPosition = pos + 1 in case we want char positions starts at 1
                         }
                         offsetLength++;
                         //TODO: in case actual diff needed add a StringBuilder and store char
                         offsetFound = true;
                     } else {
-                        if(offsetLength > 0) {
-                            Offset offset =  new Offset();
-                            offset.setPosition(offsetPosition);
-                            offset.setLength(offsetLength);
-                            //TODO: in case actual diff needed get content from StringBuilder
-                            offsets.add(offset);
-                            offsetLength = 0;
-                            offsetPosition = 0;
-                        }
                         offsetFound = false;
                     }
-
-                    if(pos > right.getContent().length()){
-                        break;
+                    if(offsetLength > 0) {
+                        Offset offset =  new Offset();
+                        offset.setPosition(offsetPosition);
+                        offset.setLength(offsetLength);
+                        //TODO: in case actual diff needed get content from StringBuilder
+                        offsets.add(offset);
+                        offsetLength = 0;
+                        offsetPosition = 0;
                     }
                     pos++;
                 }
+                if(!offsets.isEmpty()){
+                    result.setResult("DIFF STRINGS");
+                }
+            } else {
+                result.setResult("STRINGS WITH DIFF LENGTH");
             }
-            result.setOffset(offsets);
         }
+        result.setOffset(offsets);
         return result;
     }
 }

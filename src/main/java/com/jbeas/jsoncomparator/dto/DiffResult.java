@@ -10,6 +10,8 @@ public class DiffResult {
 
     private Integer id;
 
+    private String result;
+
     private List<Offset> offsets;
 
     public DiffResult(Integer id, List<Offset> offsets){
@@ -39,5 +41,13 @@ public class DiffResult {
             this.offsets = offsets;
         else
             this.offsets = new ArrayList<>();
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
     }
 }

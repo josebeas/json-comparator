@@ -3,6 +3,7 @@ package com.jbeas.jsoncomparator.controller;
 
 import com.jbeas.jsoncomparator.form.JSONInputForm;
 import com.jbeas.jsoncomparator.service.InputJSONService;
+import com.jbeas.jsoncomparator.utils.StringUtils;
 import com.jbeas.jsoncomparator.validator.JSONInputFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
+import java.io.UnsupportedEncodingException;
 
 /**
  * Controller to store both inputs, LEFT and RIGHT
@@ -68,4 +70,25 @@ public class InputJSONController {
     Integer saveRightInput(@PathVariable("id") @Min(1) Integer id, @Valid @RequestBody JSONInputForm input) {
         return inputService.save(id, input);
     }
+
+    /**
+     * Encodes given string into Base64 using utf-8 charset url safe
+     * @param input string to be encoded
+     * @return encoded string
+     */
+    @RequestMapping(value = "/v1/input/encode", method = RequestMethod.GET)
+    public String encodeString(@RequestParam("input") String input) throws UnsupportedEncodingException {
+        return StringUtils.encode(input);
+    }
+
+    /**
+     * Decodes given url safe string from Base64 and utf-8 charset
+     * @param input string to be decoded
+     * @return decoded string
+     */
+    @RequestMapping(value = "/v1/input/decode", method = RequestMethod.GET)
+    public String decodeString(@RequestParam("input") String input) throws UnsupportedEncodingException {
+        return StringUtils.decode(input);
+    }
+
 }
