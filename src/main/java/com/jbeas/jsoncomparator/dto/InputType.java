@@ -1,5 +1,8 @@
 package com.jbeas.jsoncomparator.dto;
 
+/**
+ * Enum to make easier comparatives between input types
+ */
 public enum InputType {
     LEFT("left"), RIGHT("right");
 

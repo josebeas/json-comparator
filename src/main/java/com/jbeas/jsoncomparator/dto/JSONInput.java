@@ -19,6 +19,12 @@ public class JSONInput {
         this.content = content;
     }
 
+    public JSONInput() {
+        this.id = -1;
+        this.type = InputType.LEFT;
+        this.content = "";
+    }
+
     public Integer getId() {
         return id;
     }
@@ -47,5 +53,9 @@ public class JSONInput {
             this.content = content;
         else
             this.content = "";
+    }
+
+    public String toString(){
+        return "{\"id\":\"" + this.id + "\"type\":\"" + this.type + "\", \"content\":\""+ this.content + "\"}";
     }
 }

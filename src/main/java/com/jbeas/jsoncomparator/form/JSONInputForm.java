@@ -21,4 +21,8 @@ public class JSONInputForm {
     public void setContent(String content) {
         this.content = content;
     }
+
+    public String toString(){
+        return "{\"type\":\"" + this.type + "\", \"content\":\""+ this.content + "\"}";
+    }
 }

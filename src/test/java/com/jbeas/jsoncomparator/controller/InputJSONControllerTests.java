@@ -30,7 +30,7 @@ public class InputJSONControllerTests {
     @Test
     public void saveRightInput() throws Exception {
 
-        String inputJson = "{\"type\":\"LEFT\", \"content\":\"abc\"}";
+        String inputJson = "{\"type\":\"RIGHT\", \"content\":\"abc\"}";
 
         mockMvc.perform(post("/v1/diff/{id}/right", 1)
                 .content(inputJson)
@@ -41,5 +41,73 @@ public class InputJSONControllerTests {
         verify(mockService, times(1)).save(any(Integer.class), any(JSONInputForm.class));
     }
 
-    //TODO: Add bunch of tests
+    @Test
+    public void saveLeftInput() throws Exception {
+
+        String inputJson = "{\"type\":\"LEFT\", \"content\":\"abc\"}";
+
+        mockMvc.perform(post("/v1/diff/{id}/left", 1)
+                .content(inputJson)
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().is2xxSuccessful());
+
+        verify(mockService, times(1)).save(any(Integer.class), any(JSONInputForm.class));
+    }
+
+    @Test
+    public void saveRightInput_missing_input_type() throws Exception {
+
+        String inputJson = "{\"content\":\"abc\"}";
+
+        mockMvc.perform(post("/v1/diff/{id}/right", 1)
+                .content(inputJson)
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().is2xxSuccessful());
+
+        verify(mockService, times(1)).save(any(Integer.class), any(JSONInputForm.class));
+    }
+
+    @Test
+    public void saveLeftInput_missing_input_type() throws Exception {
+
+        String inputJson = "{\"content\":\"abc\"}";
+
+        mockMvc.perform(post("/v1/diff/{id}/left", 1)
+                .content(inputJson)
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().is2xxSuccessful());
+
+        verify(mockService, times(1)).save(any(Integer.class), any(JSONInputForm.class));
+    }
+
+    @Test
+    public void saveRightInput_empty_content() throws Exception {
+
+        String inputJson = "{\"type\":\"RIGHT\", \"content\":\"\"}";
+
+        mockMvc.perform(post("/v1/diff/{id}/right", 1)
+                .content(inputJson)
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().is2xxSuccessful());
+
+        verify(mockService, times(1)).save(any(Integer.class), any(JSONInputForm.class));
+    }
+
+    @Test
+    public void saveLeftInput_empty_content() throws Exception {
+
+        String inputJson = "{\"type\":\"LEFT\", \"content\":\"\"}";
+
+        mockMvc.perform(post("/v1/diff/{id}/left", 1)
+                .content(inputJson)
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().is2xxSuccessful());
+
+        verify(mockService, times(1)).save(any(Integer.class), any(JSONInputForm.class));
+    }
 }

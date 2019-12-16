@@ -3,25 +3,23 @@ package com.jbeas.jsoncomparator.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * POJO to store differences between inputs with given id
+ */
 public class DiffResult {
 
-    //TODO: add custom exception in case null id
     private Integer id;
 
-    private List<Integer> offsets;
+    private List<Offset> offsets;
 
-    private Integer length;
-
-    public DiffResult(Integer id, Integer offset, Integer length){
+    public DiffResult(Integer id, List<Offset> offsets){
         this.id = id;
         this.offsets = new ArrayList<>();
-        this.length = length;
     }
 
     public DiffResult(Integer id){
         this.id = id;
         this.offsets = new ArrayList<>();
-        this.length = -1;
     }
 
     public Integer getId() {
@@ -32,25 +30,14 @@ public class DiffResult {
         this.id = id;
     }
 
-    public List<Integer> getOffsets() {
+    public List<Offset> getOffsets() {
         return offsets;
     }
 
-    public void setOffset(List<Integer> offsets) {
+    public void setOffset(List<Offset> offsets) {
         if(offsets != null)
             this.offsets = offsets;
         else
             this.offsets = new ArrayList<>();
-    }
-
-    public Integer getLength() {
-        return length;
-    }
-
-    public void setLength(Integer length) {
-        if(length != null)
-            this.length = length;
-        else
-            this.length = -1;
     }
 }
