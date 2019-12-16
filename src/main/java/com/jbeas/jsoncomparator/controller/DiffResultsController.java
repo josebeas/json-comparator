@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.Min;
@@ -33,7 +34,7 @@ public class DiffResultsController {
      * Just a debug endpoint to confirm that it stills alive
      * @return hard-coded string for this controller
      */
-    @RequestMapping(value = "/v1/diff/results/status")
+    @RequestMapping(value = "/v1/diff/results/status", method = RequestMethod.GET)
     public String getStatus() {
         return "JSON DIFF RESULTS CONTROLLER IS RUNNING!";
     }
@@ -46,8 +47,8 @@ public class DiffResultsController {
      * only if given id have both inputs saved and they have the same length otherwise inputs wont be compared at all.
      * @throws MissingJSONInputException when LEFT or RIGHT JsonInput is missing
      */
-    @RequestMapping(value = "/v1/diff/{id}")
-    DiffResult compareInput(@PathVariable @Min(1) Integer id) throws MissingJSONInputException{
+    @RequestMapping(value = "/v1/diff/{id}", method = RequestMethod.GET)
+    DiffResult compareInput(@PathVariable("id") @Min(1) Integer id) throws MissingJSONInputException{
         logger.info(String.format("Comparing %s JSON inputs", id));
         return resultsService.compare(id);
     }

@@ -64,9 +64,9 @@ public class InputJSONControllerTests {
                 .content(inputJson)
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
                 .andDo(print())
-                .andExpect(status().is2xxSuccessful());
+                .andExpect(status().is4xxClientError());
 
-        verify(mockService, times(1)).save(any(Integer.class), any(JSONInputForm.class));
+        verify(mockService, times(0)).save(any(Integer.class), any(JSONInputForm.class));
     }
 
     @Test
@@ -78,9 +78,9 @@ public class InputJSONControllerTests {
                 .content(inputJson)
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
                 .andDo(print())
-                .andExpect(status().is2xxSuccessful());
+                .andExpect(status().is4xxClientError());
 
-        verify(mockService, times(1)).save(any(Integer.class), any(JSONInputForm.class));
+        verify(mockService, times(0)).save(any(Integer.class), any(JSONInputForm.class));
     }
 
     @Test
@@ -92,9 +92,9 @@ public class InputJSONControllerTests {
                 .content(inputJson)
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
                 .andDo(print())
-                .andExpect(status().is2xxSuccessful());
+                .andExpect(status().is4xxClientError());
 
-        verify(mockService, times(1)).save(any(Integer.class), any(JSONInputForm.class));
+        verify(mockService, times(0)).save(any(Integer.class), any(JSONInputForm.class));
     }
 
     @Test
@@ -106,8 +106,8 @@ public class InputJSONControllerTests {
                 .content(inputJson)
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
                 .andDo(print())
-                .andExpect(status().is2xxSuccessful());
+                .andExpect(status().is4xxClientError());
 
-        verify(mockService, times(1)).save(any(Integer.class), any(JSONInputForm.class));
+        verify(mockService, times(0)).save(any(Integer.class), any(JSONInputForm.class));
     }
 }

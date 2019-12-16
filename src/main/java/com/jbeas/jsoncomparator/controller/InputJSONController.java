@@ -42,7 +42,7 @@ public class InputJSONController {
      * Debug endpoint to confirm that this controller stills alive
      * @return hard coded string for this controller
      */
-    @RequestMapping(value = "/v1/input/status")
+    @RequestMapping(value = "/v1/input/status", method = RequestMethod.GET)
     public String getStatus() {
         return "JSON INPUT CONTROLLER IS RUNNING!";
     }
@@ -54,7 +54,7 @@ public class InputJSONController {
      * @return id of given input if it was stored
      */
     @PostMapping(value = "/v1/diff/{id}/left", consumes = MediaType.APPLICATION_JSON_VALUE)
-    Integer saveLeftInput(@PathVariable @Min(1) Integer id, @Valid @RequestBody JSONInputForm input) {
+    Integer saveLeftInput(@PathVariable("id") @Min(1) Integer id, @Valid @RequestBody JSONInputForm input) {
         return inputService.save(id, input);
     }
 
@@ -65,7 +65,7 @@ public class InputJSONController {
      * @return id of given input if stored
      */
     @PostMapping(value = "/v1/diff/{id}/right", consumes = MediaType.APPLICATION_JSON_VALUE)
-    Integer saveRightInput(@PathVariable @Min(1) Integer id, @Valid @RequestBody JSONInputForm input) {
+    Integer saveRightInput(@PathVariable("id") @Min(1) Integer id, @Valid @RequestBody JSONInputForm input) {
         return inputService.save(id, input);
     }
 }
