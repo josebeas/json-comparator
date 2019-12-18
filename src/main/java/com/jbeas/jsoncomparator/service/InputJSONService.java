@@ -59,8 +59,6 @@ public class InputJSONService {
                 result.setResult("SAME STRINGS");
             } else if(left.getContent().length() == right.getContent().length()){
                 while(pos < left.getContent().length()){
-                    char leftChar = left.getContent().charAt(pos);
-                    char rightChar = right.getContent().charAt(pos);
                     if(left.getContent().charAt(pos) != right.getContent().charAt(pos)){
                         if(!offsetFound){
                             offsetPosition = pos; // change this to offsetPosition = pos + 1 in case we want char positions starts at 1
