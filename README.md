@@ -61,6 +61,20 @@ $ java -jar target/json-comparator-0.0.1-SNAPSHOT.jar
 $ mvn spring-boot:run
 ```
 
+### URL's
+* API - http://localhost:8080/swagger-ui.html
+* Compare endpoint status - http://localhost:8080/v1/diff/results/status
+* Compare endpoint - http://localhost:8080/v1/input/status
+
+* Input endpoint status - http://localhost:8080/v1/diff/{id}/left
+* Left input endpoint - http://localhost:8080/v1/diff/{id}/right
+* Right input endpoint - http://localhost:8080/v1/diff/{id}/left
+
+* Encode input: http://localhost:8080/v1/input/encode
+* Decode input: http://localhost:8080/v1/input/decode
+
+
+
 ## Next steps
 
 - Remove 'type' property on JsonInputForm since it can be guessed based on entry point url.
