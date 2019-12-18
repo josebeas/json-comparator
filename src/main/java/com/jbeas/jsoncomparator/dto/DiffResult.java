@@ -20,7 +20,7 @@ public class DiffResult {
     }
 
     public DiffResult(Integer id){
-        this.id = id;
+        this.id = id!=null?id:-1;
         this.offsets = new ArrayList<>();
     }
 

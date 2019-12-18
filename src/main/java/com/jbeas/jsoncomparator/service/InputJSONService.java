@@ -59,6 +59,8 @@ public class InputJSONService {
                 result.setResult("SAME STRINGS");
             } else if(left.getContent().length() == right.getContent().length()){
                 while(pos < left.getContent().length()){
+                    char leftChar = left.getContent().charAt(pos);
+                    char rightChar = right.getContent().charAt(pos);
                     if(left.getContent().charAt(pos) != right.getContent().charAt(pos)){
                         if(!offsetFound){
                             offsetPosition = pos; // change this to offsetPosition = pos + 1 in case we want char positions starts at 1
@@ -67,16 +69,16 @@ public class InputJSONService {
                         //TODO: in case actual diff needed add a StringBuilder and store char
                         offsetFound = true;
                     } else {
+                        if(offsetLength > 0 && offsetFound) {
+                            Offset offset =  new Offset();
+                            offset.setPosition(offsetPosition);
+                            offset.setLength(offsetLength);
+                            //TODO: in case actual diff needed get content from StringBuilder
+                            offsets.add(offset);
+                            offsetLength = 0;
+                            offsetPosition = 0;
+                        }
                         offsetFound = false;
-                    }
-                    if(offsetLength > 0) {
-                        Offset offset =  new Offset();
-                        offset.setPosition(offsetPosition);
-                        offset.setLength(offsetLength);
-                        //TODO: in case actual diff needed get content from StringBuilder
-                        offsets.add(offset);
-                        offsetLength = 0;
-                        offsetPosition = 0;
                     }
                     pos++;
                 }
