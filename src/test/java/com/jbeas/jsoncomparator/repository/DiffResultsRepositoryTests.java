@@ -28,14 +28,14 @@ public class DiffResultsRepositoryTests {
 
     @Test
     public void testAdd_valid_element(){
-        DiffResult result = new DiffResult(1, 0, 0);
+        DiffResult result = new DiffResult(1);
         classUnderTest.add(result);
         assertTrue("Element should be present", classUnderTest.entityManager.size() == 1);
     }
 
     @Test
     public void testGetById_element_integrity(){
-        DiffResult result = new DiffResult(1, 0, 0);
+        DiffResult result = new DiffResult(1);
         classUnderTest.add(result);
         DiffResult found = classUnderTest.getById(1);
         assertTrue("Element should be present", found.getId() == 1);
@@ -43,7 +43,7 @@ public class DiffResultsRepositoryTests {
 
     @Test
     public void testGetById_element_integrity_negative(){
-        DiffResult result = new DiffResult(1, 0, 0);
+        DiffResult result = new DiffResult(1);
         classUnderTest.add(result);
         DiffResult found = classUnderTest.getById(2);
         assertFalse("Element should not be present", found.getId() == 1);

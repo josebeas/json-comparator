@@ -12,17 +12,15 @@ public class DiffResultTests {
     DiffResult classUnderTest;
 
     @Test
-    public void testLength_null_length(){
-        classUnderTest = new DiffResult(null, null, null);
-        classUnderTest.setLength(null);
-        assertTrue("Default input type must be LEFT", classUnderTest.getLength() == -1);
+    public void testId_null_id(){
+        classUnderTest = new DiffResult(null);
+        assertTrue("Default id must be -1", classUnderTest.getId() == -1);
     }
 
     @Test
-    public void testLength_valid_length(){
-        classUnderTest = new DiffResult(null, null, null);
-        classUnderTest.setLength(1);
-        assertTrue("Default input type must be LEFT", classUnderTest.getLength() == 1);
+    public void testId_valid_Id(){
+        classUnderTest = new DiffResult(1);
+        assertTrue("Id must be 1", classUnderTest.getId() == 1);
     }
 
     //TODO add bunch of tests
